@@ -1,0 +1,268 @@
+/* Login Page Styling - VIMS */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --uc-dark-teal: #3c788d;
+  --uc-mid-blue: #3094c5;
+  --uc-cyan: #5ce1e6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #12222a;
+}
+
+.background {
+  width: 100%;
+  height: 100vh;
+  background: url('login_background.jpg') no-repeat center center;
+  background-size: cover;
+  
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 960px;
+  max-width: calc(100% - 40px);
+  min-height: 550px;
+  background: linear-gradient(135deg, var(--uc-dark-teal) 0%, var(--uc-mid-blue) 55%, var(--uc-cyan) 100%);
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+/* Left panel: Login content box, welcome message, and logo styling */
+.container .content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 58%;
+  background: transparent;
+  padding: 80px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.content .logo {
+  height: 250px;
+  display: flex;
+  align-items: center;
+}
+
+.content .logo img {
+  display: block;
+  height: 250px;
+  width: auto;
+}
+
+.text-sci h2 {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.text-sci h2 span {
+  font-size: 25px;
+}
+
+.text-sci p {
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+/* Right panel: Login form styling */
+.container .logreg-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 58%);
+  background: transparent;
+  border-radius: 10px;
+}
+
+.logreg-box .form-box {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 34, 42, 0.35);
+  backdrop-filter: blur(20px);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #e4f7f8;
+}
+
+.form-box form {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-box h2,
+.form-box .form-error,
+.form-box .input-box,
+.form-box .btn {
+  flex-shrink: 0;
+}
+
+.form-box .login-contact {
+  font-size: 14.5px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: auto;
+  padding-top: 25px;
+}
+
+.form-box h2 {
+  height: 48px;
+  line-height: 48px;
+  font-size: 32px;
+  text-align: center;
+}
+
+.form-box .form-error {
+  width: 100%;
+  margin: 20px 0 -10px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 3px solid var(--uc-cyan);
+  font-size: 14.5px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-box .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid var(--uc-cyan);
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #e4f7f8;
+  font-weight: 500;
+  padding-right: 28px;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 500;
+  color: #cfeff0;
+  pointer-events: none;
+  transition: .5s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:not(:placeholder-shown) ~ label,
+.input-box input:-webkit-autofill ~ label {
+  top: -5px;
+  font-size: 14px;
+  color: var(--uc-cyan);
+}
+
+.input-box .icon {
+  position: absolute;
+  top: 13px;
+  right: 0;
+  font-size: 19px;
+  color: var(--uc-cyan);
+}
+
+/* Overrides the browsers default autofill styling for user credentials
+ so that it instead matches our cards colour scheme. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset;
+    box-shadow: 0 0 0 1000px transparent inset;
+    -webkit-text-fill-color: #e4f7f8;
+    caret-color: #e4f7f8;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Login button styling */
+.btn {
+  width: 100%;
+  height: 45px;
+  background: var(--uc-dark-teal);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: background .25s ease;
+}
+
+.btn:hover {
+  background: var(--uc-mid-blue);
+}
+
+@media (max-width: 820px) {
+  .container {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    min-height: auto;
+    margin: 60px auto;
+  }
+
+  .container .content,
+  .container .logreg-box {
+    position: relative;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .container .content {
+    padding: 50px 40px;
+    gap: 40px;
+  }
+
+  .logreg-box .form-box {
+    padding: 40px;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .form-box form {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .form-box .login-contact {
+    margin-top: 25px;
+    padding-top: 0;
+  }
+}

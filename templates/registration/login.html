@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Login | VIMS</title>
+    <link rel="stylesheet" href="{% static 'registration/login.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+
+<body>
+    <div class="background"></div>
+
+    <!-- Blue blurred login card - contains the welcome section and the login form  -->
+    <div class="container">
+
+        <!-- Left panel: logo and welcome text -->
+        <div class="content">
+            <h2 class="logo">
+                <img src="{% static 'registration/Urban Connect Official Logo.png' %}" alt="UrbanConnect logo">
+            </h2>
+
+            <div class="text-sci">
+                <h2>Welcome Back!<br><span>Login to VIMS</span></h2>
+                <p>Support us in reaching our goal of building a better world together.</p>
+            </div>
+        </div>
+
+         <!-- Right panel: the login form -->
+        <div class="logreg-box">
+            <div class="form-box login">
+                <form method="post">
+                    {% csrf_token %}
+                    <h2>Login</h2>
+
+                    {% if messages %}
+                     {% for message in messages %}
+                         <div class="form-error">{{ message }}</div>
+                     {% endfor %}
+                    {% endif %}
+
+                    {% if form.errors %}
+                        <div class="form-error">
+                            Your email or password did not match. Please try again.
+                        </div>
+                    {% endif %}
+
+                    <div class="input-box">
+                        <span class="icon"><i class="bx bxs-user"></i></span>
+                        <input type="text"
+                               name="username"
+                               id="{{ form.username.id_for_label }}"
+                               value="{{ form.username.value|default:'' }}"
+                               placeholder=" "
+                               autocomplete="username"
+                               required
+                               autofocus>
+                        <label for="{{ form.username.id_for_label }}">Email address</label>
+                    </div>
+
+                    <div class="input-box">
+                        <span class="icon"><i class="bx bxs-lock-alt"></i></span>
+                        <input type="password"
+                               name="password"
+                               id="{{ form.password.id_for_label }}"
+                               placeholder=" "
+                               autocomplete="current-password"
+                               required>
+                        <label for="{{ form.password.id_for_label }}">Password</label>
+                    </div>
+
+                    {% if next %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                    {% endif %}
+                    <button type="submit" class="btn">Login</button>
+
+                    <div class="login-contact">
+                        <p>Need access? Contact the System Administrator.</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
