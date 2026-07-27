@@ -1,0 +1,2 @@
+# Keeps the data/ folder in git. The SQLite file (vims.sqlite) is created here
+# at runtime by src/db/index.ts and is git-ignored (see root .gitignore).
