@@ -1,0 +1,315 @@
+/**
+ * VIMS design tokens + global styles — Area A7 (design-system seed).
+ *
+ * Visual language adopted from the UrbanConnect brand exploration
+ * (Urban_Connect_VIMS_DTS301 login design): teal→cyan gradient, dark surface,
+ * Poppins, cyan underline inputs, glass panels. Components style themselves
+ * off these tokens — a palette change is a one-file edit.
+ *
+ * Poppins is loaded in index.html (weights 300/400/500/600/700).
+ */
+
+/* ------------------------------- tokens -------------------------------- */
+
+:root {
+  /* Brand (UrbanConnect) */
+  --uc-dark-teal: #3c788d;
+  --uc-mid-blue: #3094c5;
+  --uc-cyan: #5ce1e6;
+  --uc-gradient: linear-gradient(
+    135deg,
+    var(--uc-dark-teal) 0%,
+    var(--uc-mid-blue) 55%,
+    var(--uc-cyan) 100%
+  );
+
+  /* Surfaces & text (dark theme — the white wordmark needs it) */
+  --uc-bg: #12222a;
+  --uc-surface: #1a303a;
+  --uc-surface-raised: #22404c;
+  --uc-glass: rgba(18, 34, 42, 0.35);
+  --uc-text: #e4f7f8;
+  --uc-text-muted: #cfeff0;
+  --uc-border: rgba(92, 225, 230, 0.25);
+
+  /* Feedback accents (extends the brand's cyan-accent message block) */
+  --uc-info: var(--uc-cyan);
+  --uc-error: #ff8484;
+  --uc-success: #7fe6b0;
+
+  /* Shape & type */
+  --uc-radius-sm: 4px;
+  --uc-radius-lg: 10px;
+  --uc-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  --uc-font: 'Poppins', system-ui, sans-serif;
+}
+
+/* -------------------------------- base ---------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--uc-font);
+  background-color: var(--uc-bg);
+  color: var(--uc-text);
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+a {
+  color: var(--uc-cyan);
+}
+
+:focus-visible {
+  outline: 2px solid var(--uc-cyan);
+  outline-offset: 2px;
+}
+
+/* ------------------------------ app shell ------------------------------- */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 24px;
+  background: var(--uc-surface);
+  border-bottom: 3px solid;
+  border-image: var(--uc-gradient) 1;
+}
+
+.app-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.app-header .brand img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.app-header .app-user {
+  margin-left: auto;
+  font-size: 14.5px;
+  color: var(--uc-text-muted);
+}
+
+.app-nav {
+  display: flex;
+  gap: 4px;
+  padding: 0 24px;
+  background: var(--uc-surface);
+}
+
+.app-nav a {
+  padding: 12px 14px;
+  color: var(--uc-text-muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+
+.app-nav a:hover {
+  color: var(--uc-text);
+}
+
+.app-nav a[aria-current='page'] {
+  color: var(--uc-cyan);
+  border-bottom-color: var(--uc-cyan);
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ------------------------------- controls ------------------------------- */
+
+button {
+  font-family: inherit;
+  padding: 10px 16px;
+  background: var(--uc-dark-teal);
+  border: none;
+  border-radius: var(--uc-radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: var(--uc-shadow);
+  transition: background 0.25s ease;
+}
+
+button:hover {
+  background: var(--uc-mid-blue);
+}
+
+input:not([type='checkbox']):not([type='radio']),
+select,
+textarea {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--uc-text);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--uc-border);
+  border-bottom: 2px solid var(--uc-cyan);
+  border-radius: var(--uc-radius-sm) var(--uc-radius-sm) 0 0;
+  padding: 9px 12px;
+  width: 100%;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--uc-cyan);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--uc-cyan);
+  box-shadow: 0 1px 0 var(--uc-cyan);
+}
+
+select option {
+  background: var(--uc-surface);
+  color: var(--uc-text);
+}
+
+/* Match the brand card scheme instead of the browser's autofill yellow. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  box-shadow: 0 0 0 1000px transparent inset;
+  -webkit-text-fill-color: var(--uc-text);
+  caret-color: var(--uc-text);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ----------------------- primitives (src/ui hooks) ----------------------- */
+
+/* FieldShell wrapper: <div data-field> label + control + error */
+[data-field] {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+[data-field] label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--uc-text-muted);
+}
+
+/* InlineMessage / field errors: <p data-tone="info|error|success"> */
+p[data-tone] {
+  padding: 10px 14px;
+  border-radius: var(--uc-radius-sm);
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 3px solid var(--uc-info);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+p[data-tone='error'] {
+  border-left-color: var(--uc-error);
+  color: var(--uc-error);
+}
+
+p[data-tone='success'] {
+  border-left-color: var(--uc-success);
+  color: var(--uc-success);
+}
+
+/* StatusBadge: <span data-badge="tone"> */
+[data-badge] {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(92, 225, 230, 0.12);
+  border: 1px solid var(--uc-border);
+  color: var(--uc-cyan);
+}
+
+[data-badge='success'] {
+  color: var(--uc-success);
+  border-color: var(--uc-success);
+  background: rgba(127, 230, 176, 0.12);
+}
+
+[data-badge='error'] {
+  color: var(--uc-error);
+  border-color: var(--uc-error);
+  background: rgba(255, 132, 132, 0.12);
+}
+
+/* ------------------------------ data table ------------------------------ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--uc-surface);
+  border-radius: var(--uc-radius-lg);
+}
+
+caption {
+  text-align: left;
+  padding: 10px 14px;
+  color: var(--uc-text-muted);
+  font-size: 14px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--uc-border);
+  font-size: 14.5px;
+}
+
+thead th {
+  color: var(--uc-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tbody tr:hover {
+  background: rgba(92, 225, 230, 0.05);
+}
