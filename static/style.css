@@ -1,0 +1,183 @@
+/* Shared application styling - used by all the signed-in pages extended from base.html */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Urban Connect application theme */
+:root {
+  --uc-dark-teal: #3c788d;
+  --uc-mid-blue: #3094c5;
+  --uc-cyan: #5ce1e6;
+  --uc-text: #e4f7f8;
+  --uc-glass: rgba(18, 34, 42, 0.35);
+  --uc-line: rgba(255, 255, 255, 0.18);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--uc-text);
+  background: url('registration/login_background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Page layout: sidebar on the left and page content on the right */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar: logo, signed in user details, navigation and log out button */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  background: var(--uc-glass);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--uc-line);
+}
+
+.sidebar .logo {
+  display: flex;
+  justify-content: center;
+}
+
+.sidebar .logo img {
+  display: block;
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+}
+
+.side-divider {
+  border: none;
+  border-top: 1px solid var(--uc-line);
+  margin: 20px 0;
+}
+
+/* Signed in user's name and role */
+.side-user .profile-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.side-user .profile-icon {
+  font-size: 26px;
+  color: var(--uc-cyan);
+  flex-shrink: 0;
+}
+
+.side-user .profile-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.side-user .profile-role {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--uc-cyan);
+}
+
+/* Navigation links */
+.side-nav {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.side-nav a {
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--uc-text);
+  text-decoration: none;
+  transition: background .25s ease;
+}
+
+.side-nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Log out button */
+.logout-wrap {
+  margin-top: auto;
+}
+
+.logout-btn {
+  width: 100%;
+  height: 42px;
+  background: transparent;
+  border: 1px solid var(--uc-line);
+  outline: none;
+  border-radius: 4px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--uc-text);
+  cursor: pointer;
+  transition: background .25s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Main content area that each page fills */
+.main-area {
+  flex: 1;
+  padding: 30px 35px;
+  overflow-x: auto;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  margin-bottom: 20px;
+}
+/* Success and error messages */
+.message {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background: var(--uc-glass);
+  backdrop-filter: blur(20px);
+  border-left: 3px solid var(--uc-cyan);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.message.error {
+  border-left-color: #e8836f;
+}
+
+@media (max-width: 820px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--uc-line);
+  }
+
+  .logout-wrap {
+    margin-top: 20px;
+  }
+
+  .main-area {
+    padding: 20px;
+  }
+}

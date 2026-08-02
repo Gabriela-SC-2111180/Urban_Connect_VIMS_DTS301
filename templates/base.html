@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>{% block title %}Urban Connect{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+
+    <!-- Slot for child templates specific stylesheet -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- Shared container for all authenticated pages -->
+    <div class="app">
+        <!-- Sidebar: logo, signed in user's name and role, navigation and log out button-->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{% static 'registration/Urban Connect Official Logo.png' %}" alt="UrbanConnect logo">
+            </div>
+            <hr class="side-divider">
+            <div class="side-user">
+                <div class="profile-top">
+                    <!-- User profile icon -->
+                    <i class="bx bx-user profile-icon" aria-hidden="true"></i>
+                    <span class="profile-name">{{ user.get_full_name|default:user.get_username }}</span>
+                </div>
+                <div class="profile-role">{{ user.get_role_display }}</div>
+            </div>
+
+            <!-- Navigation links supplied by each separate app -->
+            <nav class="side-nav">
+                {% block sidebar_nav %}{% endblock %}
+            </nav>
+
+            <!-- Log out button -->
+            <form class="logout-wrap" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Log out</button>
+            </form>
+        </aside>
+
+        <!-- Page content -->
+        <div class="main-area">
+            <!-- Success and error messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <main>
+                <!-- Section for each page to fill with its own content -->
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+
+    </div>
+
+</body>
+</html>
