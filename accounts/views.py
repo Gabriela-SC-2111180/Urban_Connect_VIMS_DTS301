@@ -6,7 +6,6 @@ from .models import User
 
 # Which dashboard each role is redirected to after logging in.
 ROLE_DASHBOARD_URLS = {
-    User.Role.ADMIN: 'dashboard_admin',
     # Programme Coordinator goes straight to the volunteer list (volunteers app), which is their main dashboard.
     User.Role.PROGRAMME_COORDINATOR: 'volunteer_list',
     User.Role.OPERATIONS: 'dashboard_operations',
