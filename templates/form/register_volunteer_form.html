@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register Volunteer | Urban Connect{% endblock %}
+
+{% block sidebar_nav %}
+    <a href="{% url 'volunteer_list' %}">Volunteer records</a>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'form/register_volunteer_form.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="form-page">
+        <h1 class="page-title">Register Volunteer</h1>
+
+        <!-- Registration form card -->
+        <div class="form-card">
+            <form method="post" action="{% url 'volunteer_register' %}">
+                {% csrf_token %}
+                <!-- Non field error shown at the top of the form -->
+                {% if form.non_field_errors %}
+                    <div class="form-error">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <!-- Renders each fields label or fieldset, a required marker, and any validation errors -->
+                {% for field in form %}
+                    <div class="field">
+                        {% if field.use_fieldset %}
+                            <fieldset class="checkbox-group">
+                                <legend>{{ field.label }}{% if field.field.required %}<span class="required" aria-hidden="true">*</span>{% endif %}</legend>
+                                {{ field }}
+                            </fieldset>
+                        {% else %}
+                            <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<span class="required" aria-hidden="true">*</span>{% endif %}</label>
+                            {{ field }}
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="field-error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <!-- Form buttons: Cancel link returns back to the volunteer list without saving, submit button registers the volunteer -->
+                <div class="form-actions">
+                    <a href="{% url 'volunteer_list' %}" class="btn-secondary">Cancel</a>
+                    <button type="submit" class="btn">Register volunteer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

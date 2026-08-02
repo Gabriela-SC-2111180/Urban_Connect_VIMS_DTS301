@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Volunteer Records | Urban Connect{% endblock %}
+
+{% block sidebar_nav %}
+    <a href="{% url 'volunteer_list' %}">Volunteer records</a>
+{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'volunteer/volunteer_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">Volunteer Records</h1>
+
+    <!-- Tool bar: search box and the register volunteer button -->
+    <div class="toolbar">
+        <form class="search-box" method="get" action="{% url 'volunteer_list' %}">
+            <input type="search"
+                   name="q"
+                   value="{{ q }}"
+                   placeholder="Search by name, email or phone number..."
+                   aria-label="Search volunteer records">
+
+            <button type="submit" class="search-icon" title="Search" aria-label="Search">
+                <i class="bx bx-search" aria-hidden="true"></i>
+            </button>
+        </form>
+        <a href="{% url 'volunteer_register' %}" class="btn">+ Register Volunteer</a>
+    </div>
+
+    <!-- Volunteer records table -->
+    <div class="table-card">
+        <table class="records-table">
+            <thead>
+                <tr>
+                    <th>Volunteer ID</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>DBS Status</th>
+                    <th>DBS Expiry</th>
+                    <th class="col-actions">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for volunteer in volunteers %}
+                    <tr>
+                        <td>{{ volunteer.volunteer_id }}</td>
+                        <td>{{ volunteer.full_name }}</td>
+                        <td>{{ volunteer.phone_number }}</td>
+                        <td>{{ volunteer.get_dbs_status_display }}</td>
+                        <td>{{ volunteer.dbs_expiry_date|date:"d/m/Y" }}</td>
+
+                        <td class="col-actions">
+                            <!-- TO DO: Volunteer details, edit and delete views -->
+                            <a class="action-link" href="####">View</a>
+                            <a class="action-link" href="####">Edit</a>
+                            <a class="action-link action-delete" href="####">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty">
+                            {% if q %}
+                                No records match &ldquo;{{ q }}&rdquo;.
+                            {% else %}
+                                No volunteer records to show.
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

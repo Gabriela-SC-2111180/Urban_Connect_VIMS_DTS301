@@ -1,0 +1,142 @@
+/* Volunteer list page styling */
+
+/* Tool bar: search box and the volunteer register button */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.toolbar .search-box {
+  position: relative;
+  flex: 0 1 400px;
+}
+
+.search-box input {
+  width: 100%;
+  height: 44px;
+  background: #1d3f52;
+  border: 1px solid var(--uc-line);
+  outline: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--uc-text);
+  padding: 0 40px 0 14px;
+}
+
+.search-box input::placeholder {
+  color: #9fc4cf;
+}
+
+.search-box input:focus {
+  border-color: var(--uc-cyan);
+}
+
+.search-box .search-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  font-size: 19px;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--uc-cyan);
+  cursor: pointer;
+}
+
+.filter-select option {
+  color: #12222a;
+}
+
+/* Register volunteer button */
+.toolbar .btn {
+  margin-left: auto;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 20px;
+  background: #1d3f52;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: background .25s ease;
+}
+
+.toolbar .btn:hover {
+  background: var(--uc-mid-blue);
+}
+
+/* Volunteer records table */
+.table-card {
+  background: var(--uc-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--uc-line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.records-table th {
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #12222a;
+  background: var(--uc-cyan);
+  white-space: nowrap;
+}
+
+.records-table td {
+  padding: 14px;
+  border-top: 1px solid var(--uc-line);
+}
+
+.records-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Action column */
+.records-table .col-actions {
+  white-space: nowrap;
+}
+
+.action-link {
+  margin-right: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--uc-cyan);
+  text-decoration: none;
+}
+
+.action-link:hover {
+  text-decoration: underline;
+}
+
+.action-link.action-delete {
+  color: #f0a08f;
+}
+
+/* No records shown display*/
+.records-table .empty {
+  padding: 30px;
+  text-align: center;
+  font-weight: 500;
+  color: #cfeff0;
+}
+
+@media (max-width: 820px) {
+  .toolbar .btn {
+    margin-left: 0;
+  }
+}
