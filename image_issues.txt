@@ -1,0 +1,18 @@
+Images & icons review — styling/migrate-dev-301-old-code
+
+Emoji scan: searched all tracked .html/.jsx/.tsx files for emoji characters.
+Result: 0 matches. No emoji found in headings or anywhere else.
+
+Image inventory (tracked, non-node_modules):
+  frontend/public/login-background.jpg      md5: 5ef5f87d5043b894cc9500948b67bd2c
+  frontend/public/urbanconnect-logo.png     md5: e0ed82edf384ec0a94eb0812e81fac26
+  static/registration/Urban Connect Official Logo.png  md5: b9b0557978ee081c738c347bbd9c33ce
+  static/registration/login_background.jpg  md5: 46535cd74b27331341b55b259c2aa2e3
+
+Note: the frontend/public/ and static/registration/ files share the same
+subject matter (brand logo, login background) by name but are NOT
+byte-identical duplicates (different checksums) — they're separate
+exports/optimizations for the Django templates vs. the React frontend
+respectively, not accidental copy-paste duplication. No action taken;
+flagging only for awareness in case the two should be reconciled to a single
+source asset as part of the broader migration.

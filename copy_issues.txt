@@ -1,0 +1,19 @@
+Copy & microcopy review — styling/migrate-dev-301-old-code
+
+Searched all tracked .html, .jsx, .tsx, .js, .ts files (node_modules excluded)
+for AI-buzzword patterns: unlock, empower, seamless, leverage, streamline,
+robust, cutting-edge, elevate, harness, delve.
+
+Result: 0 matches.
+
+Searched for "Learn more" CTA text.
+
+Result: 0 matches.
+
+Only user-facing copy in the repo right now is templates/registration/login.html:
+- "Welcome Back!" / "Login to VIMS" (hero heading)
+- "Support us in reaching our goal of building a better world together." (subhead)
+- "Login" (CTA button — specific, not generic)
+- "Need access? Contact the System Administrator." (contact microcopy)
+
+None of these need manual review; no changes made.

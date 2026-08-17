@@ -157,7 +157,6 @@ a {
 button {
   font-family: inherit;
   padding: 10px 16px;
-  min-height: 44px;
   background: var(--uc-dark-teal);
   border: none;
   border-radius: var(--uc-radius-sm);

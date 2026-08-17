@@ -1,0 +1,68 @@
+Design checklist audit — styling/migrate-dev-301-old-code
+Scope: static/registration/login.css, static/registration/login_background.jpg,
+templates/registration/login.html, frontend/src/ui/theme.css, and all tracked
+.html/.jsx/.tsx/.js/.ts files (node_modules excluded).
+
+Note: origin/main had no CSS delta to pull into this branch — the only CSS file
+on main (static/registration/login.css) was already byte-identical to the copy
+on feature/migrate-dev-301-old-code. So this audit runs against the CSS already
+on the feature branch rather than a main-diff, per explicit user direction.
+
+== Colors ==
+No violation found.
+- static/registration/login.css :root defines exactly 3 custom properties
+  (--uc-dark-teal, --uc-mid-blue, --uc-cyan) — within the stated 3-color limit.
+- The linear-gradient in .container (teal -> mid-blue -> cyan, 135deg) is NOT a
+  purple-to-blue gradient, so it does not match the specific pattern the
+  checklist calls out. It is the project's documented brand identity (see the
+  header comment in frontend/src/ui/theme.css: "Visual language adopted from
+  the UrbanConnect brand exploration").
+- No gradient buttons: .btn / button use solid var(--uc-dark-teal).
+- No alternating background pattern.
+NOT AUTO-CHANGED: frontend/src/ui/theme.css defines additional custom
+properties beyond the 3 brand colors (--uc-bg, --uc-surface,
+--uc-surface-raised, --uc-glass, --uc-text, --uc-text-muted, --uc-border,
+--uc-info, --uc-error, --uc-success). These are semantic tokens derived from
+the 3 brand colors (surfaces/text/feedback-state), not an unrelated palette,
+and are consumed by ~15 component rules across the file (header, nav, buttons,
+inputs, badges, table, focus states). Collapsing them to 3 raw colors would be
+a high-risk, ambiguous change likely to break the whole design system —
+flagged for manual review instead of auto-edited, per the "stop and list files
+if ambiguous" rule.
+
+== Typography ==
+No violation found. font-family is 'Poppins' (via var(--uc-font) in
+theme.css, and directly in login.css) in both files — not Inter/Roboto/Open
+Sans, so no placeholder-stack substitution applies. Headings already differ
+from body: h1/h2 use font-weight 600 vs body's default weight; login.css
+.text-sci h2 uses font-size 40px/line-height 1 vs body copy at 16px.
+
+== Layout ==
+No violation found. No `grid-template-columns: repeat(3` (or any CSS grid)
+usage anywhere in the two stylesheets.
+
+== Copy & Microcopy ==
+No violation found. Searched all tracked .html/.jsx/.tsx/.js/.ts files for:
+unlock, empower, seamless, leverage, streamline, robust, cutting-edge,
+elevate, harness, delve, and "Learn more" — zero matches. See copy_issues.txt.
+
+== Images & Icons ==
+No violation found. Searched all tracked .html/.jsx/.tsx files for emoji
+characters — zero matches. See image_issues.txt for the image inventory.
+
+== UX & Interaction ==
+- Hero heading (templates/registration/login.html): "Welcome Back! / Login to
+  VIMS" — 5 words, well under the 12-word limit. No TODO needed.
+- Touch targets: static/registration/login.css .btn already has explicit
+  height: 45px (>= 44px, compliant).
+AUTO-CHANGED (safe/additive, backed up first):
+- frontend/src/ui/theme.css: the global `button` rule had no explicit height
+  and could render under 44px tall (15px font + 10px vertical padding).
+  Added `min-height: 44px;` to that rule only. Did NOT add a blanket
+  `a { min-height/min-width: 44px }` rule — the file has several inline text
+  links (.app-nav a, table row content) where forcing a 44px box would alter
+  visual layout in ways that need human sign-off; not applied.
+  Backup: ai_backups/frontend/src/ui/theme.css (pre-edit copy)
+
+Files touched: frontend/src/ui/theme.css (1 line added)
+Files backed up: ai_backups/frontend/src/ui/theme.css
